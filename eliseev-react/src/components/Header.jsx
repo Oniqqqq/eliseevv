@@ -1,46 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+
+const NAV_LINKS = [
+  { href: '#context',    label: 'Контекст' },
+  { href: '#structure',  label: 'Структура' },
+  { href: '#visual',     label: 'Визуальное направление' },
+  { href: '#cases',      label: 'Клиенты и кейсы' },
+  { href: '#stages',     label: 'Этапы и стоимость' },
+  { href: '#platform',   label: 'Платформа' },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const openMenu  = () => setIsMenuOpen(true);
   const closeMenu = () => setIsMenuOpen(false);
+  const toggleMenu = () => setIsMenuOpen(prev => !prev);
+
+  // Lock body scroll while menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMenuOpen]);
+
+  // ---- Portal overlay (rendered to <body> to avoid stacking-context issues) ----
+  const overlay = createPortal(
+    <div className={`mobile-nav-overlay${isMenuOpen ? ' is-open' : ''}`}>
+      <nav className="mobile-nav">
+        {NAV_LINKS.map(({ href, label }) => (
+          <a key={href} href={href} className="mobile-nav-link" onClick={closeMenu}>
+            {label}
+          </a>
+        ))}
+      </nav>
+    </div>,
+    document.body
+  );
 
   return (
-    <header className={`header ${isMenuOpen ? 'is-menu-open' : ''}`}>
-      <div className="header-inner">
-        <div className="header-logo">
-          <span className="logo-text">e-comexpert</span>
+    <>
+      {/* Header bar — always on top, never contains the overlay */}
+      <header className="header">
+        <div className="header-inner">
+          <div className="header-logo">
+            <span className="logo-text">e-comexpert</span>
+          </div>
+
+          {/* Desktop nav */}
+          <nav className="header-nav">
+            {NAV_LINKS.map(({ href, label }) => (
+              <a key={href} href={href} className="nav-link">{label}</a>
+            ))}
+          </nav>
+
+          {/* Burger button — always interactive, highest possible z */}
+          <button
+            className={`burger-btn${isMenuOpen ? ' is-active' : ''}`}
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? 'Закрыть меню' : 'Открыть меню'}
+            aria-expanded={isMenuOpen}
+          >
+            <span className="burger-line" />
+            <span className="burger-line" />
+          </button>
         </div>
-        
-        {/* Desktop Nav */}
-        <nav className="header-nav">
-          <a href="#context" className="nav-link">Контекст</a>
-          <a href="#structure" className="nav-link">Структура</a>
-          <a href="#visual" className="nav-link">Визуальное направление</a>
-          <a href="#cases" className="nav-link">Клиенты и кейсы</a>
-          <a href="#stages" className="nav-link">Этапы и стоимость</a>
-          <a href="#platform" className="nav-link">Платформа</a>
-        </nav>
+      </header>
 
-        {/* Mobile Burger Button */}
-        <button className="burger-btn" onClick={toggleMenu} aria-label="Toggle menu">
-          <span className="burger-line"></span>
-          <span className="burger-line"></span>
-        </button>
-      </div>
-
-      {/* Mobile Nav Overlay */}
-      <div className="mobile-nav-overlay">
-        <nav className="mobile-nav">
-          <a href="#context" className="mobile-nav-link" onClick={closeMenu}>Контекст</a>
-          <a href="#structure" className="mobile-nav-link" onClick={closeMenu}>Структура</a>
-          <a href="#visual" className="mobile-nav-link" onClick={closeMenu}>Визуальное направление</a>
-          <a href="#cases" className="mobile-nav-link" onClick={closeMenu}>Клиенты и кейсы</a>
-          <a href="#stages" className="mobile-nav-link" onClick={closeMenu}>Этапы и стоимость</a>
-          <a href="#platform" className="mobile-nav-link" onClick={closeMenu}>Платформа</a>
-        </nav>
-      </div>
-    </header>
+      {/* Mobile overlay — portalled to <body>, z-index independent */}
+      {overlay}
+    </>
   );
 }

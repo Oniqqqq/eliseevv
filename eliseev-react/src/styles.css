@@ -59,12 +59,7 @@ body {
   width: 100%;
   z-index: 9999;
   padding: 2rem 4rem;
-  pointer-events: none; /* Let clicks pass through empty spaces */
-  
-  /* Force hardware acceleration and a new stacking context */
-  transform: translateZ(0);
-  isolation: isolate;
-  will-change: transform;
+  pointer-events: none;
 }
 
 .header-inner {
@@ -73,7 +68,6 @@ body {
   align-items: center;
   pointer-events: auto;
   position: relative;
-  z-index: 10;
 }
 
 .logo-text {
@@ -161,7 +155,8 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 10005; /* Must sit above everything else */
+  position: relative;
+  z-index: 10001; /* Always above the overlay */
   padding: 0;
   pointer-events: auto;
 }
@@ -172,59 +167,57 @@ body {
   transition: transform 0.4s var(--ease-fluid), opacity 0.4s ease;
   transform-origin: left center;
 }
-.header.is-menu-open .burger-line:first-child {
+.burger-btn.is-active .burger-line:first-child {
   transform: rotate(45deg);
 }
-.header.is-menu-open .burger-line:last-child {
+.burger-btn.is-active .burger-line:last-child {
   transform: rotate(-45deg);
 }
 
+/* ---- Portal Overlay (rendered directly to <body> via createPortal) ---- */
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  /* Darker background overlay for better contrast */
-  background: rgba(11, 16, 18, 0.55); 
+  background: rgba(11, 16, 18, 0.55);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  z-index: 9998;
+  z-index: 9998; /* below header (9999) but above all page sections */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 10rem 2.2rem 4rem; 
-  overflow-y: auto;          
-  -webkit-overflow-scrolling: touch; 
+  padding: 10rem 2.2rem 4rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s var(--ease-fluid);
 }
-.header.is-menu-open .mobile-nav-overlay {
+.mobile-nav-overlay.is-open {
   opacity: 1;
-  pointer-events: auto; /* Re-enable clicks inside the menu overlay */
+  pointer-events: auto;
 }
 
 .mobile-nav {
-  /* "Fintech" / "Approach" Glass Style */
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 32px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-  
   width: 100%;
   max-width: 400px;
-  margin: auto 0; /* Centers vertically if space permits, aligns top if not */
+  margin: auto 0;
   display: flex;
   flex-direction: column;
-  gap: 1.8rem; /* Tighter gap for small screens */
-  padding: 3.5rem 2rem; /* Reduced padding */
+  gap: 1.8rem;
+  padding: 3.5rem 2rem;
   align-items: center;
   transform: translateY(20px) scale(0.98);
   transition: transform 0.6s var(--ease-fluid);
 }
 
-.header.is-menu-open .mobile-nav {
+.mobile-nav-overlay.is-open .mobile-nav {
   transform: translateY(0) scale(1);
 }
 
@@ -242,18 +235,18 @@ body {
 .mobile-nav-link:hover {
   color: var(--color-taupe);
 }
-.header.is-menu-open .mobile-nav-link {
+.mobile-nav-overlay.is-open .mobile-nav-link {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Staggered entry for mobile links */
-.header.is-menu-open .mobile-nav-link:nth-child(1) { transition-delay: 0.10s; }
-.header.is-menu-open .mobile-nav-link:nth-child(2) { transition-delay: 0.15s; }
-.header.is-menu-open .mobile-nav-link:nth-child(3) { transition-delay: 0.20s; }
-.header.is-menu-open .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
-.header.is-menu-open .mobile-nav-link:nth-child(5) { transition-delay: 0.30s; }
-.header.is-menu-open .mobile-nav-link:nth-child(6) { transition-delay: 0.35s; }
+/* Staggered link entry */
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(1) { transition-delay: 0.10s; }
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(2) { transition-delay: 0.15s; }
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(3) { transition-delay: 0.20s; }
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(4) { transition-delay: 0.25s; }
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(5) { transition-delay: 0.30s; }
+.mobile-nav-overlay.is-open .mobile-nav-link:nth-child(6) { transition-delay: 0.35s; }
 
 /* =========================================================================
    Layout & Utility

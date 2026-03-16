@@ -37,7 +37,7 @@ export default function Footer() {
 
         {/* Bottom: fine print */}
         <div className="footer-bottom">
-          <span className="footer-copy">© 2025 e-comexpert</span>
+          <span className="footer-copy">© 2026 e-comexpert</span>
           <span className="footer-divider">—</span>
           <span className="footer-note">Коммерческое предложение. Конфиденциально.</span>
         </div>
