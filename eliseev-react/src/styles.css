@@ -1927,8 +1927,9 @@ body {
   .hero-subtitle {
     font-size: 1.4rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.7); /* Slightly brighter for better legibility on gradient */
     max-width: 85%;
+    display: block !important; /* Ensure it is visible */
   }
 
   /* Glass list panel — hidden on mobile for cleanliness */
