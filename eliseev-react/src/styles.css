@@ -60,6 +60,11 @@ body {
   z-index: 9999;
   padding: 2rem 4rem;
   pointer-events: none; /* Let clicks pass through empty spaces */
+  
+  /* Force hardware acceleration and a new stacking context */
+  transform: translateZ(0);
+  isolation: isolate;
+  will-change: transform;
 }
 
 .header-inner {
@@ -67,6 +72,8 @@ body {
   justify-content: space-between;
   align-items: center;
   pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .logo-text {
@@ -154,8 +161,9 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 9999; /* Above overlay */
+  z-index: 10005; /* Must sit above everything else */
   padding: 0;
+  pointer-events: auto;
 }
 .burger-line {
   width: 100%;
@@ -174,24 +182,25 @@ body {
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(11, 16, 18, 0.4); /* Lighter backdrop to let the "glass" pop */
+  /* Darker background overlay for better contrast */
+  background: rgba(11, 16, 18, 0.55); 
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   z-index: 9998;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Fixes top clipping on small screens */
+  justify-content: flex-start;
   align-items: center;
-  padding: 10rem 2.2rem 4rem; /* Top padding clears header (100px) */
-  overflow-y: auto;          /* Allow scrolling if menu is taller than screen */
-  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  padding: 10rem 2.2rem 4rem; 
+  overflow-y: auto;          
+  -webkit-overflow-scrolling: touch; 
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s var(--ease-fluid);
 }
 .header.is-menu-open .mobile-nav-overlay {
   opacity: 1;
-  pointer-events: auto;
+  pointer-events: auto; /* Re-enable clicks inside the menu overlay */
 }
 
 .mobile-nav {
