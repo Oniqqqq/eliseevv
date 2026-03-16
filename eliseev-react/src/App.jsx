@@ -362,7 +362,7 @@ function App() {
       });
 
       // --- Smooth Anchor Scrolling (Hooked to Lenis) ---
-      document.querySelectorAll('.nav-link').forEach(anchor => {
+      document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(anchor => {
         // Need to clean up these listeners too later
         anchor.addEventListener('click', function (e) {
           e.preventDefault();
