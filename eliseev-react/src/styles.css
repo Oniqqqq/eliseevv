@@ -1634,27 +1634,264 @@ body {
   letter-spacing: 0.05em;
 }
 
-@media (max-width: 1024px) {
-  .video-modules, .matrix-row, .matrix-header {
-    grid-template-columns: 1fr;
-  }
-  .assumptions-list {
-    column-count: 1;
-  }
+/* =========================================================================
+   RESPONSIVE — 1280px (large tablets / small laptops)
+   ========================================================================= */
+@media (max-width: 1280px) {
+  /* Header */
+  .header { padding: 1.6rem 3rem; }
+
+  /* Hero gallery — shrink outer columns */
+  .item-1, .item-4, .item-7 { left: 0.5%; }
+  .item-3, .item-6, .item-9 { right: 0.5%; }
+
+  /* Metrics */
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+
+  /* Portfolio */
+  .portfolio-mock { grid-template-columns: 1.4fr 1fr; gap: 4rem; }
+
+  /* Cases */
+  .case-item { gap: 4rem; }
+
+  /* Platform */
+  .platform-card { padding: 4rem; }
+
+  /* Arch map */
+  .process-columns { gap: 1rem; }
+  .node-name { font-size: 2rem; }
 }
-@media (max-width: 768px) {
-  .context-body, .approach-grid, .portfolio-mock, .reference-wall, .case-item, .case-reverse, .result-grid, .platform-grid {
-    grid-template-columns: 1fr;
-  }
+
+/* =========================================================================
+   RESPONSIVE — 1024px (tablets landscape)
+   ========================================================================= */
+@media (max-width: 1024px) {
+  /* Global */
+  .container { padding: 0 3rem; }
+  .section-title { font-size: clamp(2.8rem, 4vw, 5rem); }
+
+  /* Header */
+  .header { padding: 1.4rem 2.4rem; }
+  .header-nav { gap: 2rem; padding: 1rem 2rem; }
+  .nav-link { font-size: 1.1rem; }
+
+  /* Hero */
+  .hero-text-wrap { max-width: 65%; }
+  .hero-title { font-size: clamp(3rem, 5vw, 5.5rem); }
+  .hero-subtitle { font-size: clamp(1.3rem, 1.6vw, 1.8rem); }
+
+  /* Hide far left/right gallery cards on tablets */
+  .item-2, .item-5, .item-8, .item-6 { display: none; }
+
+  /* Context */
+  .context-body { grid-template-columns: 1fr; gap: 4rem; }
+
+  /* Social Proof */
+  .social-glass { padding: 5rem 4rem; gap: 5rem; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; padding-top: 4rem; }
+
+  /* Approach */
+  .approach-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .card-title { font-size: 2.6rem; }
+
+  /* Architecture */
+  .arch-glass { padding: 4rem; }
+  .process-columns { flex-direction: column; gap: 3rem; }
+  .process-track { width: 1px; height: 100%; }
+  .process-col { padding-left: 2.5rem; padding-top: 0; }
+  .process-col::before { display: none; }
+
+  /* Portfolio */
+  .portfolio-mock { grid-template-columns: 1fr; gap: 4rem; }
+
+  /* Visual */
+  .reference-wall { grid-template-columns: 1fr; gap: 4rem; }
+
+  /* Cases */
+  .case-item, .case-reverse { grid-template-columns: 1fr; gap: 3rem; margin-bottom: 8rem; }
   .case-reverse .case-info { order: 1; }
   .case-reverse .case-image-wrap { order: 2; }
-  .footer-inner {
-    padding: 7rem 3rem 4rem;
+
+  /* Partner Cases */
+  .video-modules { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+  .video-wrap-tall { transform: none; aspect-ratio: 16/9; }
+
+  /* Stages */
+  .stage-title { font-size: 2.6rem; }
+  .stage-item { gap: 3rem; }
+
+  /* Pricing */
+  .pricing-matrix { border-top: none; }
+  .matrix-row, .matrix-header {
+    grid-template-columns: 1fr;
+    padding: 2.5rem 0;
+    gap: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
-  .footer-cta-right {
-    align-items: flex-start;
-  }
+  .matrix-header { display: none; }
+  .matrix-price-col { justify-content: flex-start; }
+  .matrix-total .matrix-col:first-child { font-size: 1.2rem; }
+
+  /* Assumptions */
+  .assumptions-list { column-count: 1; }
+
+  /* Result */
+  .result-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+  /* Platform */
+  .platform-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .platform-card { padding: 4rem; }
+
+  /* Footer */
+  .footer-inner { padding: 10rem 3rem 4rem; gap: 5rem; }
+  .footer-cta-strip { flex-direction: column; align-items: flex-start; gap: 4rem; }
+  .footer-cta-right { align-items: flex-start; }
+  .footer-headline { font-size: clamp(4rem, 6vw, 7rem); }
 }
+
+/* =========================================================================
+   RESPONSIVE — 768px (tablets portrait / phablets)
+   ========================================================================= */
+@media (max-width: 768px) {
+  /* Global */
+  html { font-size: 56.25%; } /* 9px base */
+  .container { padding: 0 2.2rem; }
+  .section { min-height: auto; padding: 8rem 0; }
+
+  /* Header — hide nav pill, show logo only */
+  .header { padding: 1.4rem 2.2rem; }
+  .header-nav { display: none; }
+
+  /* Hero */
+  .hero { padding-top: 12rem; min-height: 100svh; }
+  .hero-content { padding: 2rem; }
+  .hero-text-wrap { max-width: 85%; }
+  .hero-title { font-size: clamp(2.8rem, 7vw, 4.5rem); }
+  .hero-subtitle { font-size: 1.4rem; }
+  .hero-glass-panel { align-self: flex-start; padding: 2rem 2.5rem; margin-top: 3rem; }
+
+  /* Hide all gallery cards on mobile */
+  .hero-gallery-item { display: none; }
+  /* Keep the dark bg so the hero doesn't look empty */
+  .hero-bg { background: linear-gradient(160deg, #0e1315 0%, #1a1f22 100%); }
+
+  /* Context */
+  .context-body { gap: 3rem; }
+  .editorial-text { font-size: clamp(2.2rem, 5vw, 3rem); }
+  .editorial-subtext { font-size: 1.6rem; }
+  .final-line { font-size: 2rem; }
+
+  /* Social Proof */
+  .social-glass { padding: 4rem 2.5rem; gap: 4rem; }
+  .social-header h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; padding-top: 3rem; }
+  .metric-number { font-size: clamp(3.5rem, 9vw, 6rem); }
+
+  /* Approach */
+  .approach-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .approach-card { padding: 3rem; }
+  .card-title { font-size: 2.4rem; margin-top: 4rem; }
+
+  /* Architecture */
+  .arch-glass { padding: 2.5rem; }
+
+  /* Portfolio */
+  .portfolio-mock { gap: 3rem; }
+  .mock-image-wrap { aspect-ratio: 4/3; }
+
+  /* Visual */
+  .visual { min-height: auto; }
+  .visual-content { padding: 7rem 0; }
+  .vbg-col--narrow { display: none; }  /* Show only one column on mobile */
+  .vbg-col--wide { flex: 0 0 100%; }
+
+  /* Cases */
+  .case-item { margin-bottom: 6rem; }
+  .case-name { font-size: clamp(2.6rem, 6vw, 4.5rem); }
+  .case-image-wrap { aspect-ratio: 3/2; }
+
+  /* Partner Cases */
+  .video-modules { grid-template-columns: 1fr; gap: 2.5rem; }
+  .video-module { margin-bottom: 1rem; }
+
+  /* Stages */
+  .stage-item { flex-direction: column; gap: 2rem; }
+  .stage-num { width: 5rem; height: 5rem; font-size: 1.8rem; }
+  .stages-timeline::before { left: 2.4rem; }
+  .stage-title { font-size: 2.4rem; }
+  .stage-list-wrap { padding: 2rem; }
+
+  /* Pricing */
+  .pricing-subtitle { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+  .matrix-col { font-size: 1.7rem; }
+  .pricing-time { font-size: 2rem; }
+
+  /* Result */
+  .result-list { font-size: 2rem; }
+  .result-list li { margin-bottom: 1.5rem; }
+
+  /* Platform */
+  .platform-card { padding: 3rem; }
+  .platform-name { font-size: 2.6rem; }
+  .platform-choice { font-size: clamp(2.4rem, 5vw, 3.5rem); }
+
+  /* Footer */
+  .footer { min-height: auto; }
+  .footer-inner { padding: 8rem 2.2rem 4rem; gap: 4rem; }
+  .footer-headline { font-size: clamp(3.4rem, 8vw, 5.5rem); letter-spacing: -0.03em; }
+  .footer-cta-text { font-size: 1.8rem; }
+  .footer-cta-btn { padding: 1.5rem 3rem; font-size: 1.6rem; }
+  .footer-bottom { flex-wrap: wrap; gap: 1rem; }
+  .footer-note { display: none; } /* Too long on tiny screens */
+}
+
+/* =========================================================================
+   RESPONSIVE — 480px (phones)
+   ========================================================================= */
+@media (max-width: 480px) {
+  html { font-size: 50%; } /* 8px base — keeps rems manageable */
+  .container { padding: 0 1.8rem; }
+  .section { padding: 6rem 0; }
+
+  /* Header */
+  .header { padding: 1.2rem 1.8rem; }
+  .logo-text { font-size: 1.2rem; }
+
+  /* Hero */
+  .hero { padding-top: 10rem; }
+  .hero-text-wrap { max-width: 100%; }
+  .hero-glass-panel { width: 100%; align-self: stretch; }
+
+  /* Context */
+  .final-line { font-size: 1.8rem; }
+
+  /* Social Proof */
+  .social-glass { padding: 3rem 2rem; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1rem; }
+
+  /* Approach */
+  .approach-card { padding: 2.5rem; }
+
+  /* Stages */
+  .stage-content { padding-top: 0; }
+  .stages-timeline::before { display: none; }
+  .stage-item { flex-direction: column; gap: 1.5rem; }
+
+  /* Pricing */
+  .pricing-matrix { margin-bottom: 3rem; }
+  .pricing-footer { gap: 1.5rem; }
+
+  /* Result */
+  .result-intro { font-size: clamp(2rem, 5.5vw, 3rem); }
+
+  /* Footer */
+  .footer-inner { padding: 6rem 1.8rem 3rem; }
+  .footer-headline { font-size: clamp(3rem, 9vw, 4.5rem); }
+  .footer-cta-strip { gap: 3rem; padding-top: 3rem; }
+  .footer-cta-btn { width: 100%; justify-content: center; padding: 1.6rem 2.5rem; }
+  .footer-bottom { padding-top: 2rem; }
+}
+
 
 /* =========================================================================
    Custom Premium Cursor
