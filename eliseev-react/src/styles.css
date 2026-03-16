@@ -1889,44 +1889,46 @@ body {
     position: relative;
   }
   .hero-content {
-    padding: 0 2rem 3rem;
+    padding: 7rem 2rem 3rem; /* 7rem top clears the fixed header */
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     z-index: 3;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* text block sticks to bottom */
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
   
-  /* Text wrap: not full width, leaves space for gallery feel */
+  /* Text wrap — constrained width, glass backing, left-weighted */
   .hero-text-wrap {
-    max-width: 72%;
-    background: rgba(11, 16, 18, 0.55);
+    width: 70%;              /* fixed width, not full-screen */
+    background: rgba(11, 16, 18, 0.58);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 1.8rem 2rem;
+    border-radius: 16px;     /* all corners rounded incl. right side */
+    padding: 1.4rem 1.6rem 1.4rem 1.8rem; /* compact height, text hugs left */
     border: 1px solid rgba(255,255,255,0.08);
+    margin-left: 0;          /* anchored to left edge of content area */
   }
   .hero-title {
-    font-size: clamp(2.6rem, 7.5vw, 4rem);
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
     line-height: 1.05;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
   }
-  .hero-subtitle { font-size: 1.3rem; line-height: 1.5; }
+  .hero-subtitle { font-size: 1.2rem; line-height: 1.5; }
 
-  /* Glass panel: narrower, aligned to the right */
+  /* Glass panel — narrower, shifted slightly left for balance */
   .hero-glass-panel {
-    align-self: flex-end;
-    width: 58%;
-    padding: 1.5rem 2rem;
+    align-self: flex-start;  /* anchor left instead of right */
+    width: 62%;              /* wide enough to read, not edge-to-edge */
+    margin-left: auto;       /* push it right — right-ish but not extreme right */
+    margin-right: 0;
+    padding: 1.4rem 1.8rem;
     margin-top: 0;
     border-radius: 16px;
   }
-  .hero-list li { font-size: 1.2rem; margin-bottom: 0.7rem; }
+  .hero-list li { font-size: 1.2rem; margin-bottom: 0.6rem; padding-left: 1.6rem; }
 
   /* ---- Cosmos.so mosaic grid ----
      3 columns: left narrow | center | right narrow
