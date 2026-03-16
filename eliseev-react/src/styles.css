@@ -1758,22 +1758,35 @@ body {
   .container { padding: 0 2.2rem; }
   .section { min-height: auto; padding: 8rem 0; }
 
-  /* Header — hide nav pill, show logo only */
-  .header { padding: 1.4rem 2.2rem; }
+  /* Header — always visible, solid glass background on mobile */
+  .header {
+    padding: 1.4rem 2.2rem;
+    background: rgba(11, 16, 18, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    pointer-events: auto;
+  }
   .header-nav { display: none; }
 
   /* Hero */
-  .hero { padding-top: 12rem; min-height: 100svh; }
+  .hero { padding-top: 11rem; min-height: 100svh; }
   .hero-content { padding: 2rem; }
-  .hero-text-wrap { max-width: 85%; }
+  .hero-text-wrap { max-width: 80%; }
   .hero-title { font-size: clamp(2.8rem, 7vw, 4.5rem); }
   .hero-subtitle { font-size: 1.4rem; }
   .hero-glass-panel { align-self: flex-start; padding: 2rem 2.5rem; margin-top: 3rem; }
 
-  /* Hide all gallery cards on mobile */
+  /* Hero gallery — hide middle cards, keep 2 slim corner images */
   .hero-gallery-item { display: none; }
-  /* Keep the dark bg so the hero doesn't look empty */
-  .hero-bg { background: linear-gradient(160deg, #0e1315 0%, #1a1f22 100%); }
+  .item-1, .item-3 {
+    display: block;
+    width: 16vw;
+    height: 26vw;
+    filter: brightness(0.55);
+  }
+  .item-1 { top: 18%; left: 1%; }
+  .item-3 { top: 18%; right: 1%; }
 
   /* Context */
   .context-body { gap: 3rem; }
@@ -1858,9 +1871,13 @@ body {
   .logo-text { font-size: 1.2rem; }
 
   /* Hero */
-  .hero { padding-top: 10rem; }
+  .hero { padding-top: 9rem; }
   .hero-text-wrap { max-width: 100%; }
   .hero-glass-panel { width: 100%; align-self: stretch; }
+  /* Make corner images even smaller on phones */
+  .item-1, .item-3 { width: 14vw; height: 22vw; }
+  .item-1 { top: 20%; left: 0.5%; }
+  .item-3 { top: 20%; right: 0.5%; }
 
   /* Context */
   .final-line { font-size: 1.8rem; }

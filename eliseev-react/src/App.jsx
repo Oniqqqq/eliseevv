@@ -93,22 +93,59 @@ function App() {
         heroSection.addEventListener('mouseleave', handleMouseLeave);
       }
 
-      // --- Hero Morph Transition to Context ---
-      gsap.to(".hero-content", {
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
-        y: -150, scale: 0.95, opacity: 0, ease: "none"
+      // --- Hero Matrix & Scroll Animations (Desktop/Tablet only) ---
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 769px)", () => {
+        // --- Hero Morph Transition to Context ---
+        gsap.to(".hero-content", {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+          y: -150, scale: 0.95, opacity: 0, ease: "none"
+        });
+
+        gsap.to(".hero-gallery-item", {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
+          y: (i) => (i % 2 === 0 ? -200 : 200) - (i * 20),
+          x: (i) => (i % 2 !== 0 ? -150 : 150),
+          scale: 1.2, opacity: 0, rotationZ: (i) => (i % 2 === 0 ? 15 : -15), ease: "none"
+        });
+
+        gsap.to(".hero-bg", {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+          yPercent: 15, scale: 0.95, opacity: 0.5, ease: "none"
+        });
+        
+        // --- Header Adaptivity (Dark text on light sections) ---
+        const lightSections = document.querySelectorAll('.context, .architecture, .visual, .result, .platform'); 
+        lightSections.forEach(section => {
+          ScrollTrigger.create({
+            trigger: section,
+            start: "top 100px", end: "bottom 100px",
+            onEnter: () => document.querySelector(".header").classList.add("is-light-bg"),
+            onLeave: () => document.querySelector(".header").classList.remove("is-light-bg"),
+            onEnterBack: () => document.querySelector(".header").classList.add("is-light-bg"),
+            onLeaveBack: () => document.querySelector(".header").classList.remove("is-light-bg")
+          });
+        });
+
+        return () => {
+          // cleanup function for matchMedia if needed
+          document.querySelector(".header").classList.remove("is-light-bg");
+        };
       });
 
-      gsap.to(".hero-gallery-item", {
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
-        y: (i) => (i % 2 === 0 ? -200 : 200) - (i * 20),
-        x: (i) => (i % 2 !== 0 ? -150 : 150),
-        scale: 1.2, opacity: 0, rotationZ: (i) => (i % 2 === 0 ? 15 : -15), ease: "none"
-      });
-
-      gsap.to(".hero-bg", {
-        scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
-        yPercent: 15, scale: 0.95, opacity: 0.5, ease: "none"
+      mm.add("(max-width: 768px)", () => {
+        // Simple hero fade out on mobile to keep it clean
+        gsap.to(".hero-content", {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true },
+          y: -50, opacity: 0, ease: "none"
+        });
+        
+        // Small parallax for the remaining 2 corner images
+        gsap.to(".hero-gallery-item", {
+          scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: 1 },
+          y: -100, opacity: 0, ease: "none"
+        });
       });
 
       // --- Context Block Overlay Entry ---
@@ -161,18 +198,7 @@ function App() {
         });
       });
 
-      // --- Header Adaptivity ---
-      const lightSections = document.querySelectorAll('.context, .architecture, .visual, .result, .platform'); 
-      lightSections.forEach(section => {
-        ScrollTrigger.create({
-          trigger: section,
-          start: "top 100px", end: "bottom 100px",
-          onEnter: () => document.querySelector(".header").classList.add("is-light-bg"),
-          onLeave: () => document.querySelector(".header").classList.remove("is-light-bg"),
-          onEnterBack: () => document.querySelector(".header").classList.add("is-light-bg"),
-          onLeaveBack: () => document.querySelector(".header").classList.remove("is-light-bg")
-        });
-      });
+      // Header Adaptivity handled in matchMedia above
 
       // --- Social Proof Count Up & Marquee ---
       const socialMetrics = document.querySelectorAll('.metric-number');
