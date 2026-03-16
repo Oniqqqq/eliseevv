@@ -25,9 +25,9 @@ export default function Hero() {
         <div className="hero-text-wrap">
           <h1 className="hero-title">Цифровая архитектура<br/>для Eliseev Architects</h1>
           <p className="hero-subtitle">
-            Концепция редизайна сайта архитектурного бюро<br/>
-            с акцентом на визуальный язык архитектуры<br/>
-            и чистую цифровую эстетику.
+            Концепция редизайна сайта архитектурного<br/>
+            бюро с акцентом на визуальный язык<br/>
+            архитектуры и чистую цифровую эстетику.
           </p>
         </div>
         <div className="hero-glass-panel">
