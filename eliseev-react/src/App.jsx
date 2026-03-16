@@ -20,6 +20,7 @@ import Assumptions from './components/Assumptions';
 import Result from './components/Result';
 import Platform from './components/Platform';
 import Footer from './components/Footer';
+import Cursor from './components/Cursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -362,6 +363,7 @@ function App() {
 
   return (
     <>
+      <Cursor />
       <Header />
       <main id="smooth-wrapper">
         <div id="smooth-content">

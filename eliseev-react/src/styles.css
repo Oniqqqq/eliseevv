@@ -1627,11 +1627,134 @@ body {
   .footer-inner {
     padding: 7rem 3rem 4rem;
   }
-  .footer-cta-strip {
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .footer-cta-right {
     align-items: flex-start;
   }
+}
+
+/* =========================================================================
+   Custom Premium Cursor
+   ========================================================================= */
+
+/* Hide default cursor everywhere on desktop — JS will restore on touch */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* The cursor element itself */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Centred on the actual pointer point */
+  width: 40px;
+  height: 40px;
+  margin-left: -20px;
+  margin-top: -20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0; /* JS fades it in after a short delay */
+  will-change: transform;
+
+  /* The circle ring */
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  /* Very subtle glass-like inner tint */
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  /* Smooth shape / size transitions */
+  transition:
+    width 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    margin 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    border-color 0.35s ease,
+    background 0.35s ease,
+    opacity 0.35s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Adaptive colour: dark cursor on light sections ---- */
+.cursor.cursor--dark {
+  border-color: rgba(11, 16, 18, 0.6);
+  background: rgba(11, 16, 18, 0.04);
+}
+
+/* ---- Cursor hidden (mouse left window) ---- */
+.cursor.cursor--hidden {
+  opacity: 0 !important;
+}
+
+/* ---- Hover on links / nav ---- */
+.cursor.cursor--link {
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+}
+.cursor.cursor--dark.cursor--link {
+  border-color: rgba(11, 16, 18, 0.4);
+  background: rgba(11, 16, 18, 0.06);
+}
+
+/* ---- Hover on cards ---- */
+.cursor.cursor--card {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Hover on media (video / images) — largest + label ---- */
+.cursor.cursor--media {
+  width: 80px;
+  height: 80px;
+  margin-left: -40px;
+  margin-top: -40px;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* The text label inside cursor (Play / View / Explore) */
+.cursor-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Only show label when media state is active */
+.cursor.cursor--media .cursor-label {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Dark section media label */
+.cursor.cursor--dark.cursor--media {
+  border-color: rgba(11, 16, 18, 0.45);
+  background: rgba(11, 16, 18, 0.06);
+}
+.cursor.cursor--dark .cursor-label {
+  color: rgba(11, 16, 18, 0.8);
 }

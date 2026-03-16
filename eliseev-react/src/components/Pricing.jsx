@@ -32,7 +32,7 @@ export default function Pricing() {
         
         <div className="pricing-footer">
           <p className="pricing-time">Общий срок реализации проекта: <strong>6–9 недель.</strong></p>
-          <p className="pricing-link-wrapper">КП в PDF формате доступно по ссылке: <a href="#" className="pdf-link">Скачать PDF</a></p>
+          <p className="pricing-link-wrapper">КП в PDF формате доступно по ссылке: <a href="https://drive.google.com/file/d/1GwnnLzLhiLgL4l81zYI8uTnaW6WCdfQZ/view?usp=sharing" target="_blank" rel="noreferrer" className="pdf-link">Скачать PDF</a></p>
           <p className="pricing-note">Пояснение: Разница в стоимости первого этапа связана с наличием или отсутствием редактируемых исходных файлов.</p>
         </div>
       </div>
