@@ -1927,7 +1927,7 @@ body {
   .hero-subtitle {
     font-size: 1.6rem;
     line-height: 1.45;
-    color: var(--color-white); /* Pure white for maximum readability on mobile gradient */
+    color: var(--color-grey); /* Dark color because the user indicated the backing is white */
     max-width: 95%; /* Let text breathe more */
     display: block !important; 
   }
