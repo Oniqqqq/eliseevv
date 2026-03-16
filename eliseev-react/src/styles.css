@@ -1925,11 +1925,11 @@ body {
     margin-bottom: 1.4rem;
   }
   .hero-subtitle {
-    font-size: 1.4rem;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.7); /* Slightly brighter for better legibility on gradient */
-    max-width: 85%;
-    display: block !important; /* Ensure it is visible */
+    font-size: 1.6rem;
+    line-height: 1.45;
+    color: var(--color-white); /* Pure white for maximum readability on mobile gradient */
+    max-width: 95%; /* Let text breathe more */
+    display: block !important; 
   }
 
   /* Glass list panel — hidden on mobile for cleanliness */
