@@ -1100,7 +1100,31 @@ body {
   font-weight: 300;
   color: var(--color-taupe);
   max-width: 900px;
-  margin-bottom: 8rem;
+  margin-bottom: 2.5rem;
+}
+.partner-kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 3rem;
+}
+.partner-desc--secondary {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 5rem;
+}
+.partner-sub {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 2.5rem;
 }
 .video-modules {
   display: grid;

@@ -5,8 +5,15 @@ export default function PartnerCases() {
     <section className="section partner-cases" id="partner-cases">
       <div className="container">
         <div className="partner-header">
-          <h2 className="section-title">Партнерские кейсы</h2>
-          <p className="partner-desc">Ниже представлены примеры проектов близкого уровня по визуальной проработке, motion-подаче и качеству цифровой реализации.</p>
+          <span className="partner-kicker">Digital collaboration</span>
+          <p className="partner-desc">
+            Для задач, связанных с 3D-визуализацией и&nbsp;motion-дизайном, мы подключаем профильных специалистов
+            с&nbsp;релевантным опытом в&nbsp;архитектурной и&nbsp;визуально сложной digital-среде.
+          </p>
+          <p className="partner-desc partner-desc--secondary">
+            Такой подход позволяет создавать сайты, где дизайн, архитектура и&nbsp;анимация работают как единая система.
+          </p>
+          <p className="partner-sub">Ниже приведены кейсы, близкие по уровню визуальной проработки.</p>
         </div>
         <div className="video-modules">
           <div className="video-module">
